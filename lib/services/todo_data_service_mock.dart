@@ -35,5 +35,3 @@ class TodoDataServiceMock {
     _todosDatabase.removeWhere((todo) => todo.id == id);
   }
 }
-
-final todoDataService = TodoDataServiceMock();
