@@ -1,14 +1,8 @@
 import '../models/todo.dart';
 import 'rest_service.dart';
+import 'todo_data_service.dart';
 
-class TodoDataServiceRest {
-  static final TodoDataServiceRest _instance =
-      TodoDataServiceRest._constructor();
-  factory TodoDataServiceRest() {
-    return _instance;
-  }
-
-  TodoDataServiceRest._constructor();
+class TodoDataServiceRest implements TodoDataService {
   final rest = RestService();
 
   Future<List<Todo>> getTodoList() async {
@@ -33,5 +27,3 @@ class TodoDataServiceRest {
     await rest.delete('todos/$id');
   }
 }
-
-final todoDataService = TodoDataServiceRest();

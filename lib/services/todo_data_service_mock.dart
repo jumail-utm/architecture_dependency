@@ -1,4 +1,5 @@
 import '../models/todo.dart';
+import 'todo_data_service.dart';
 
 final _todosDatabase = <Todo>[
   Todo(id: 1, title: 'Complete Assignment 1', completed: false),
@@ -7,14 +8,7 @@ final _todosDatabase = <Todo>[
 
 int _nextId = 3;
 
-class TodoDataServiceMock {
-  static final TodoDataServiceMock _instance =
-      TodoDataServiceMock._constructor();
-  factory TodoDataServiceMock() {
-    return _instance;
-  }
-  TodoDataServiceMock._constructor();
-
+class TodoDataServiceMock implements TodoDataService {
   Future<List<Todo>> getTodoList() async {
     return [..._todosDatabase];
   }
@@ -35,5 +29,3 @@ class TodoDataServiceMock {
     _todosDatabase.removeWhere((todo) => todo.id == id);
   }
 }
-
-final todoDataService = TodoDataServiceMock();
