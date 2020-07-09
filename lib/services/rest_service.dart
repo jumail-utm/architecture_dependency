@@ -2,13 +2,6 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class RestService {
-  static final RestService _instance = RestService._constructor();
-  factory RestService() {
-    return _instance;
-  }
-
-  RestService._constructor();
-
   // Change the baseUrl based on your laptop's IP address.
   static const String baseUrl = 'http://192.168.0.3:3000';
 

@@ -1,9 +1,10 @@
+import '../dependencies.dart';
 import '../models/todo.dart';
 import 'rest_service.dart';
 import 'todo_data_service.dart';
 
 class TodoDataServiceRest implements TodoDataService {
-  final rest = RestService();
+  final rest = service<RestService>();
 
   Future<List<Todo>> getTodoList() async {
     final listJson = await rest.get('todos');
