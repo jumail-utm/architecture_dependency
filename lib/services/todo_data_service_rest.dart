@@ -33,5 +33,3 @@ class TodoDataServiceRest {
     await rest.delete('todos/$id');
   }
 }
-
-final todoDataService = TodoDataServiceRest();
