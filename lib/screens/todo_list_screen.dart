@@ -62,16 +62,8 @@ class _TodoListScreenState extends State<TodoListScreen> {
           );
         },
       ),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
-        onPressed: () async {
-          final newTodo = await widget.dataService.createTodo(
-            todo: Todo(title: 'New Task'),
-          ); // Update server. Id for the new Todo will be given by the server
-
-          setState(() => _todos.add(newTodo)); // Update UI
-        },
-      ),
+      floatingActionButton: AddTodoButton(
+          dataService: widget.dataService, state: this, todos: _todos),
     );
   }
 
@@ -87,6 +79,32 @@ class _TodoListScreenState extends State<TodoListScreen> {
           ],
         ),
       ),
+    );
+  }
+}
+
+class AddTodoButton extends StatelessWidget {
+  const AddTodoButton({
+    this.dataService,
+    this.state,
+    this.todos,
+  });
+
+  final dataService;
+  final state;
+  final todos;
+
+  @override
+  Widget build(BuildContext context) {
+    return FloatingActionButton(
+      child: Icon(Icons.add),
+      onPressed: () async {
+        final newTodo = await dataService.createTodo(
+          todo: Todo(title: 'New Task'),
+        ); // Update server. Id for the new Todo will be given by the server
+
+        state.setState(() => todos.add(newTodo)); // Update UI
+      },
     );
   }
 }
